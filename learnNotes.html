@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <title>Air Flute: A Virtual Flute and Tutoring System</title>
+
+    </head>
+    <body>
+        <h1><a href="titlePage.html">Air Flute: A Virtual Flute and Tutoring System</a></h1>
+
+        <button type="button" id = "start">Click Me To Start</button>
+        <button type="button" id = "generateNote">New Note</button>
+
+
+        <div class="container">
+            <img src="BlankFluteFingeringChart.jfif" id = "chartPic" class = "chartPic" alt="Chart">
+            <div id = "left-thumb" class="left-thumb">1</div>
+            <div id = "left-index" class="left-index">2</div>
+            <div id = "left-middle" class="left-middle">3</div>
+            <div id = "left-ring" class="left-ring">4</div>
+            <div id = "left-pinky" class="left-pinky">5</div>
+            <div id = "right-index" class="right-index">2</div>
+            <div id = "right-middle" class="right-middle">3</div>
+            <div id = "right-ring" class="right-ring">4</div>
+            <div id = "right-pinky" class="right-pinky">5</div>
+        </div>
+
+        
+
+        <img src="Notes/D4.png" alt = "D4" class = "notes" id = "D4pic">
+        <img src="Notes/Eb4.png" alt = "Eb4" class = "notes" id = "Eb4pic">
+        <img src="Notes/E4.png" alt = "E4" class = "notes" id = "E4pic">
+        <img src="Notes/F4.png" alt = "F4" class = "notes" id = "F4pic">
+        <img src="Notes/Gb4.png" alt = "Gb4" class = "notes" id = "Gb4pic">
+        <img src="Notes/G4.png" alt = "G4" class = "notes" id = "G4pic">
+        <img src="Notes/Ab4.png" alt = "Ab4" class = "notes" id = "Ab4pic">
+        <img src="Notes/A4.png" alt = "A4" class = "notes" id = "A4pic">
+        <img src="Notes/Bb4.png" alt = "Bb4" class = "notes" id = "Bb4pic">
+        <img src="Notes/B4.png" alt = "B4" class = "notes" id = "B4pic">
+        <img src="Notes/C5.png" alt = "C5" class = "notes" id = "C5pic">
+        <img src="Notes/Db5.png" alt = "Db5" class = "notes" id = "Db5pic">
+        <img src="Notes/D5.png" alt = "D5" class = "notes" id = "D5pic">
+        <img src="Notes/Eb5.png" alt = "Eb5" class = "notes" id = "Eb5pic">
+        <img src="Notes/E5.png" alt = "E5" class = "notes" id = "E5pic">
+        <img src="Notes/F5.png" alt = "F5" class = "notes" id = "F5pic">
+        <img src="Notes/Gb5.png" alt = "Gb5" class = "notes" id = "Gb5pic">
+        <img src="Notes/G5.png" alt = "G5" class = "notes" id = "G5pic">
+        <img src="Notes/Ab5.png" alt = "Ab5" class = "notes" id = "Ab5pic">
+        <img src="Notes/A5.png" alt = "A5" class = "notes" id = "A5pic">
+        <img src="Notes/Bb5.png" alt = "Bb5" class = "notes" id = "Bb5pic">
+        <img src="Notes/B5.png" alt = "B5" class = "notes" id = "B5pic">
+        <img src="Notes/C6.png" alt = "C6" class = "notes" id = "C6pic">
+        <img src="Notes/Db6.png" alt = "Db6" class = "notes" id = "Db6pic">
+        <img src="Notes/D6.png" alt = "D6" class = "notes" id = "D6pic">
+        <img src="Notes/Eb6.png" alt = "Eb6" class = "notes" id = "Eb6pic">
+        <img src="Notes/E6.png" alt = "E6" class = "notes" id = "E6pic">
+        <img src="Notes/F6.png" alt = "F6" class = "notes" id = "F6pic">
+        <img src="Notes/Gb6.png" alt = "Gb6" class = "notes" id = "Gb6pic">
+        <img src="Notes/G6.png" alt = "G6" class = "notes" id = "G6pic">
+        <img src="Notes/Ab6.png" alt = "Ab6" class = "notes" id = "Ab6pic">
+        <img src="Notes/A6.png" alt = "A6" class = "notes" id = "A6pic">
+
+        <p id = "resultsMessage" class = "resultsMessage">Results</p>
+
+        <style>
+        body {
+            background-color: lightblue;
+          }
+        
+        
+        .container {
+            position: absolute;
+            text-align: center;
+            color: white;
+          }
+
+          .chartPic {
+            position: absolute;
+            left: 435px;
+          }
+          
+          .left-thumb {
+            position: absolute;
+            top: 85px;
+            left: 455px;
+            color: red;
+            font-size: 15px;
+          }
+          
+          .left-index {
+            position: absolute;
+            top: 50px;
+            left: 470px;
+            color: red;
+            font-size: 15px;
+          }
+          
+          .left-middle {
+            position: absolute;
+            top: 50px;
+            left: 515px;
+            color: red;
+            font-size: 15px;
+          }
+          
+          .left-ring {
+            position: absolute;
+            top: 50px;
+            left: 552px;
+            color: red;
+            font-size: 15px;
+          }
+          
+          .left-pinky {
+            position: absolute;
+            top: 12px;
+            left: 565px;
+            color: red;
+            font-size: 15px;
+          }
+
+          .right-index {
+            position: absolute;
+            top: 50px;
+            left: 625px;
+            color: red;
+            font-size: 15px;
+          }
+
+          .right-middle {
+            position: absolute;
+            top: 50px;
+            left: 670px;
+            color: red;
+            font-size: 15px;
+          }
+
+          .right-ring {
+            position: absolute;
+            top: 50px;
+            left: 715px;
+            color: red;
+            font-size: 15px;
+          }
+
+          .right-pinky {
+            position: absolute;
+            top: 75px;
+            left: 755px;
+            color: red;
+            font-size: 15px;
+          }
+
+          .generateNote {
+              position: relative;
+          }
+
+          img.notes {
+            position: absolute;
+            bottom: 160px;
+            left: 20px;
+            display: none;              
+          }
+
+          .resultsMessage {
+              position: absolute;
+              bottom: 100px;
+              display: none;
+          }
+
+        </style>
+
+        <script src="leap-0.6.0-beta1.js"></script>
+        <script src="leap-1.0.0.js"></script>
+        
+        <script>
+
+            var minDotOn = -1;
+            var maxDotOn = 0.4;
+            var fingerPosition = [0,0,0,0,0,0,0,0,0,0];
+            var dotLeftThumb;
+            var dotLeftIndex;
+            var dotLeftMiddle;
+            var dotLeftRing;
+            var dotLeftPinky;
+            var dotRightIndex;
+            var dotRightMiddle;
+            var dotRightRing;
+            var dotRightPinky;
+            
+            var currentFreq;
+
+
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+
+            const context = new AudioContext();
+            const oscillator = context.createOscillator();
+
+            const gain = context.createGain();
+            oscillator.connect(gain);
+            gain.connect(context.destination);
+
+            let maxFluteVol = 1;
+
+            start.onclick = function()
+            {
+                oscillator.start(0);
+                //oscillator.type = 'square';
+                gain.gain.value = 0;
+                oscillator.frequency.value = 440;
+                document.getElementById("start").innerText = "Started";
+                maxFluteVol = 1;
+            };
+
+
+
+
+            const D4 = {
+                name: "D4",
+                pic: document.getElementById("D4pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 2, 3, 4, 0],
+                frequency: 294
+            };
+
+            const Eb4 = {
+                name: "Eb4",
+                pic: document.getElementById("Eb4pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 2, 3, 4, 5],
+                frequency: 311
+            };
+
+            const E4 = {
+                name: "E4",
+                pic: document.getElementById("E4pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 2, 3, 0, 5],
+                frequency: 330
+            };
+
+            const F4 = {
+                name: "F4",
+                pic: document.getElementById("F4pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 2, 0, 0, 5],
+                frequency: 349
+            };
+
+            const Gb4 = {
+                name: "Gb4",
+                pic: document.getElementById("Gb4pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 0, 0, 4, 5],
+                frequency: 370
+            };
+
+            const G4 = {
+                name: "G4",
+                pic: document.getElementById("G4pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 0, 0, 0, 5],
+                frequency: 392
+            };
+
+            const Ab4 = {
+                name: "Ab4",
+                pic: document.getElementById("Ab4pic"),
+                fingering: [1, 2, 3, 4, 5, 0, 0, 0, 0, 5],
+                frequency: 415
+            };
+
+            const A4 = {
+                name: "A4",
+                pic: document.getElementById("A4pic"),
+                fingering: [1, 2, 3, 0, 0, 0, 0, 0, 0, 5],
+                frequency: 440
+            };
+
+            const Bb4 = {
+                name: "Bb4",
+                pic: document.getElementById("Bb4pic"),
+                fingering: [1, 2, 0, 0, 0, 0, 2, 0, 0, 5],
+                frequency: 494
+            };
+
+            const B4 = {
+                name: "B4",
+                pic: document.getElementById("B4pic"),
+                fingering: [1, 2, 0, 0, 0, 0, 0, 0, 0, 5],
+                frequency: 494
+            };
+
+            const C5 = {
+                name: "C5",
+                pic: document.getElementById("C5pic"),
+                fingering: [0, 2, 0, 0, 0, 0, 0, 0, 0, 5],
+                frequency: 523
+            };
+
+            const Db5 = {
+                name: "Db5",
+                pic: document.getElementById("Db5pic"),
+                fingering: [0, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+                frequency: 554
+            };
+
+            const D5 = {
+                name: "D5",
+                pic: document.getElementById("D5pic"),
+                fingering: [1, 0, 3, 4, 0, 0, 2, 3, 4, 0],
+                frequency: 587
+            };
+
+            const Eb5 = {
+                name: "Eb5",
+                pic: document.getElementById("Eb5pic"),
+                fingering: [1, 0, 3, 4, 0, 0, 2, 3, 4, 5],
+                frequency: 622
+            };
+
+            const E5 = {
+                name: "E5",
+                pic: document.getElementById("E5pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 2, 3, 0, 5],
+                frequency: 659
+            };
+
+            const F5 = {
+                name: "F5",
+                pic: document.getElementById("F5pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 2, 0, 0, 5],
+                frequency: 698
+            };
+
+            const Gb5 = {
+                name: "Gb5", 
+                pic: document.getElementById("Gb5pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 0, 0, 4, 5],
+                frequency: 740
+            };
+
+            const G5 = {
+                name: "G5", 
+                pic: document.getElementById("G5pic"),
+                fingering: [1, 2, 3, 4, 0, 0, 0, 0, 0, 5],
+                frequency: 784
+            };
+
+            const Ab5 = {
+                name: "Ab5", 
+                pic: document.getElementById("Ab5pic"),
+                fingering: [1, 2, 3, 4, 5, 0, 0, 0, 0, 5],
+                frequency: 831
+            };
+
+            const A5 = {
+                name: "A5", 
+                pic: document.getElementById("A5pic"),
+                fingering: [1, 2, 3, 0, 0, 0, 0, 0, 0, 5],
+                frequency: 880
+            };
+
+            const Bb5 = {
+                name: "Bb5", 
+                pic: document.getElementById("Bb5pic"),
+                fingering: [1, 2, 0, 0, 0, 0, 2, 0, 0, 5],
+                frequency: 932
+            };
+
+            const B5 = {
+                name: "B5", 
+                pic: document.getElementById("B5pic"),
+                fingering: [1, 2, 0, 0, 0, 0, 0, 0, 0, 5],
+                frequency: 988
+            };
+
+            const C6 = {
+                name: "C6", 
+                pic: document.getElementById("C6pic"),
+                fingering: [0, 2, 0, 0, 0, 0, 0, 0, 0, 5],
+                frequency: 1047
+            };
+
+            const Db6 = {
+                name: "Db6", 
+                pic: document.getElementById("Db6pic"),
+                fingering: [0, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+                frequency: 1109
+            };
+
+            const D6 = {
+                name: "D6", 
+                pic: document.getElementById("D6pic"),
+                fingering: [1, 0, 3, 4, 0, 0, 0, 0, 0, 5],
+                frequency: 1175
+            };
+
+            const Eb6 = {
+                name: "Eb6", 
+                pic: document.getElementById("Eb6pic"),
+                fingering: [1, 2, 3, 4, 5, 0, 2, 3, 4, 5],
+                frequency: 1245
+            };
+
+            const E6 = {
+                name: "E6", 
+                pic: document.getElementById("E6pic"),
+                fingering: [1, 2, 3, 0, 0, 0, 2, 3, 0, 5],
+                frequency: 1319
+            };
+
+            const F6 = {
+                name: "F6", 
+                pic: document.getElementById("F6pic"),
+                fingering: [1, 2, 0, 4, 0, 0, 2, 0, 0, 5],
+                frequency: 1397
+            };
+
+            const Gb6 = {
+                name: "Gb6", 
+                pic: document.getElementById("Gb6pic"),
+                fingering: [1, 2, 0, 4, 0, 0, 0, 0, 4, 5],
+                frequency: 1480
+            };
+
+            const G6 = {
+                name: "G6", 
+                pic: document.getElementById("G6pic"),
+                fingering: [0, 2, 3, 4, 0, 0, 0, 0, 0, 5],
+                frequency: 1568
+            };
+
+            const Ab6 = {
+                name: "Ab6", 
+                pic: document.getElementById("Ab6pic"),
+                fingering: [0, 0, 3, 4, 5, 0, 0, 0, 0, 5],
+                frequency: 1661
+            };
+
+            const A6 = {
+                name: "A6", 
+                pic: document.getElementById("A6pic"),
+                fingering: [1, 0, 3, 0, 0, 0, 2, 0, 0, 5],
+                frequency: 1760
+            };
+
+            const notes = [D4, Eb4, E4, F4, Gb4, G4, Ab4, A4, Bb4, B4, 
+                C5, Db5, D5, Eb5, E5, F5, Gb5, G5, Ab5, A5, Bb5, B5, 
+                C6, Db6, D6, Eb6, E6, F6, Gb6, G6, Ab6, A6
+            ]; // 32 notes total
+
+            let randNoteNum = 0;
+            let correctFingering = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            let checkCounter = 0;
+            let correctCounter = 0;
+
+            let testTime = false;
+
+            const resultsMessage = document.getElementById("resultsMessage");
+            
+            generateNote.onclick = function()
+            {
+                for (let notePicCount = 0; notePicCount < notes.length; notePicCount++) {
+                    notes[notePicCount].pic.style.display = "none";
+                }
+                randNoteNum = Math.floor((Math.random() * 32) + 1) - 1;
+                notes[randNoteNum].pic.style.display = "inline";
+                correctFingering = notes[randNoteNum].fingering;
+                currentFreq = notes[randNoteNum].frequency;
+
+                checkCounter = 0;
+                correctCounter = 0;
+                testTime = true;
+
+                resultsMessage.style.display = "none";
+
+                document.getElementById("left-thumb").style.color = "white";
+                document.getElementById("left-index").style.color = "white";
+                document.getElementById("left-middle").style.color = "white";
+                document.getElementById("left-ring").style.color = "white";
+                document.getElementById("left-pinky").style.color = "white";
+                document.getElementById("right-index").style.color = "white";
+                document.getElementById("right-middle").style.color = "white";
+                document.getElementById("right-ring").style.color = "white";
+                document.getElementById("right-pinky").style.color = "white";
+            };
+
+            const isArrEq = (firstArr, secondArr, numElem) => {
+                for (let count = 0; count < numElem; count++) {
+                    if (firstArr[count] != secondArr[count]) return false;
+                }
+                return true;
+            };
+
+            Leap.loop({
+
+                frame: function(frame){
+
+                //var handLeft = frame.hands[0];
+                var handLeft;
+                if (frame.hands[0] && frame.hands[0].type === "left") {
+                    handLeft = frame.hands[0];
+                } else if (frame.hands[1] && frame.hands[1].type === "left") {
+                    handLeft = frame.hands[1];
+                } 
+
+                if (handLeft){
+                    var dotLeftIndex = Leap.vec3.dot(handLeft.direction, handLeft.indexFinger.direction);
+                    console.assert(!isNaN(dotLeftIndex));
+                    if (dotLeftIndex < maxDotOn && dotLeftIndex > minDotOn) {
+                        //LeftIndex.innerHTML = 2;
+                        fingerPosition[1] = 2;
+                        document.getElementById("left-index").style.color = "red";
+                    }
+                    else {
+                        //LeftIndex.innerHTML = 0;
+                        fingerPosition[1] = 0;
+                        document.getElementById("left-index").style.color = "white";
+                    }
+
+                    var dotLeftThumb = Leap.vec3.dot(handLeft.direction, handLeft.thumb.direction);
+                    console.assert(!isNaN(dotLeftThumb));
+                    if (dotLeftThumb > 0.75 /*&& dotLeftThumb > minDotOn*/) {
+                        //LeftThumb.innerHTML = 1;
+                        fingerPosition[0] = 1;
+                        document.getElementById("left-thumb").style.color = "red";
+                    }
+                    else {
+                        //LeftThumb.innerHTML = 0;
+                        fingerPosition[0] = 0;
+                        document.getElementById("left-thumb").style.color = "white";
+                    }
+
+                    var dotLeftMiddle = Leap.vec3.dot(handLeft.direction, handLeft.middleFinger.direction);
+                    console.assert(!isNaN(dotLeftMiddle));
+                    if (dotLeftMiddle < maxDotOn && dotLeftMiddle > minDotOn) {
+                        //LeftMiddle.innerHTML = 3;
+                        fingerPosition[2] = 3;
+                        document.getElementById("left-middle").style.color = "red";
+                    }
+                    else {
+                        //LeftMiddle.innerHTML = 0;
+                        fingerPosition[2] = 0;
+                        document.getElementById("left-middle").style.color = "white";
+                    }
+
+                    var dotLeftRing = Leap.vec3.dot(handLeft.direction, handLeft.ringFinger.direction);
+                    console.assert(!isNaN(dotLeftRing));
+                    if (dotLeftRing < maxDotOn && dotLeftRing > minDotOn) {
+                        //LeftRing.innerHTML = 4;
+                        fingerPosition[3] = 4;
+                        document.getElementById("left-ring").style.color = "red";
+                    }
+                    else {
+                        //LeftRing.innerHTML = 0;
+                        fingerPosition[3] = 0;
+                        document.getElementById("left-ring").style.color = "white";
+                    }
+
+                    var dotLeftPinky = Leap.vec3.dot(handLeft.direction, handLeft.pinky.direction);
+                    console.assert(!isNaN(dotLeftPinky));
+                    if (dotLeftPinky < maxDotOn && dotLeftPinky > minDotOn) {
+                        //LeftPinky.innerHTML = 5;
+                        fingerPosition[4] = 5;
+                        document.getElementById("left-pinky").style.color = "red";
+                    }
+                    else {
+                        //LeftPinky.innerHTML = 0;
+                        fingerPosition[4] = 0;
+                        document.getElementById("left-pinky").style.color = "white";
+                    }
+                }
+
+
+                //var handRight = frame.hands[1];
+                var handRight;
+                if (frame.hands[0] && frame.hands[0].type === "right") {
+                    handRight = frame.hands[0];
+                } else if (frame.hands[1] && frame.hands[1].type === "right") {
+                    handRight = frame.hands[1];
+                } 
+                
+                if (handRight){
+                    var dotRightIndex = Leap.vec3.dot(handRight.direction, handRight.indexFinger.direction);
+                    console.assert(!isNaN(dotRightIndex));
+                    if (dotRightIndex < maxDotOn && dotRightIndex > minDotOn) {
+                        //RightIndex.innerHTML = 2;
+                        fingerPosition[6] = 2;
+                        document.getElementById("right-index").style.color = "red";
+                    }
+                    else {
+                        //RightIndex.innerHTML = 0;
+                        fingerPosition[6] = 0;
+                        document.getElementById("right-index").style.color = "white";
+                    }
+
+                    var dotRightMiddle = Leap.vec3.dot(handRight.direction, handRight.middleFinger.direction);
+                    console.assert(!isNaN(dotRightMiddle));
+                    if (dotRightMiddle < maxDotOn && dotRightMiddle > minDotOn) {
+                        //RightMiddle.innerHTML = 3;
+                        fingerPosition[7] = 3;
+                        document.getElementById("right-middle").style.color = "red";
+                    }
+                    else {
+                        //RightMiddle.innerHTML = 0;
+                        fingerPosition[7] = 0;
+                        document.getElementById("right-middle").style.color = "white";
+                    }
+
+                    var dotRightRing = Leap.vec3.dot(handRight.direction, handRight.ringFinger.direction);
+                    console.assert(!isNaN(dotRightRing));
+                    if (dotRightRing < maxDotOn && dotRightRing > minDotOn) {
+                        //RightRing.innerHTML = 4;
+                        fingerPosition[8] = 4;
+                        document.getElementById("right-ring").style.color = "red";
+                    }
+                    else {
+                        //RightRing.innerHTML = 0;
+                        fingerPosition[8] = 0;
+                        document.getElementById("right-ring").style.color = "white";
+                    }
+
+                    var dotRightPinky = Leap.vec3.dot(handRight.direction, handRight.pinky.direction);
+                    console.assert(!isNaN(dotRightPinky));
+                    if (dotRightPinky < maxDotOn && dotRightPinky > minDotOn) {
+                        //RightPinky.innerHTML = 5;
+                        fingerPosition[9] = 5;
+                        document.getElementById("right-pinky").style.color = "red";
+                    }
+                    else {
+                        //RightPinky.innerHTML = 0;
+                        fingerPosition[9] = 0;
+                        document.getElementById("right-pinky").style.color = "white";
+                    }
+
+                    //if (fingerPosition == [1, 2, 3, 4, 5, 0, 2, 3, 4, 5]) {
+                    if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 0) {                       
+                        oscillator.frequency.value = 294; //D4
+                        currentFreq = 294;
+                        gain.gain.value = maxFluteVol;
+                        
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 311; //Eb4
+                        currentFreq = 311;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 330) < Math.abs(currentFreq - 659)) {
+                            oscillator.frequency.value = 330; //E4
+                            currentFreq = 330;
+                        }
+                        else {
+                            oscillator.frequency.value = 659; //E5
+                            currentFreq = 659;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 349) < Math.abs(currentFreq - 698)) {
+                            oscillator.frequency.value = 349; //F4
+                            currentFreq = 349;
+                        }
+                        else {
+                            oscillator.frequency.value = 698; //F5
+                            currentFreq = 698;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 370) < Math.abs(currentFreq - 740)) {
+                            oscillator.frequency.value = 370; //Gb4
+                            currentFreq = 370;
+                        }
+                        else {
+                            oscillator.frequency.value = 740; //Gb5
+                            currentFreq = 740;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 392) < Math.abs(currentFreq - 784)) {
+                            oscillator.frequency.value = 392; //G4
+                            currentFreq = 392;
+                        }
+                        else {
+                            oscillator.frequency.value = 784; //G5
+                            currentFreq = 784;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 5 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 415) < Math.abs(currentFreq - 831)) {
+                            oscillator.frequency.value = 415; //Ab4
+                            currentFreq = 415;
+                        }
+                        else {
+                            oscillator.frequency.value = 831; //Ab5
+                            currentFreq = 831;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 440) < Math.abs(currentFreq - 880)) {
+                            oscillator.frequency.value = 440; //A4
+                            currentFreq = 440;
+                        }
+                        else {
+                            oscillator.frequency.value = 880; //A5
+                            currentFreq = 880;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 466) < Math.abs(currentFreq - 932)) {
+                            oscillator.frequency.value = 466; //Bb4
+                            currentFreq = 466;
+                        }
+                        else {
+                            oscillator.frequency.value = 932; //Bb5
+                            currentFreq = 932;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 494) < Math.abs(currentFreq - 988)) {
+                            oscillator.frequency.value = 494; //B4
+                            currentFreq = 494;
+                        }
+                        else {
+                            oscillator.frequency.value = 988; //B5
+                            currentFreq = 988;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 0 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 523) < Math.abs(currentFreq - 1047)) {
+                            oscillator.frequency.value = 523; //C5
+                            currentFreq = 523;
+                        }
+                        else {
+                            oscillator.frequency.value = 1047; //C6
+                            currentFreq = 1047;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 0 && fingerPosition[1] == 0 && fingerPosition[2] == 0 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 554) < Math.abs(currentFreq - 1109)) {
+                            oscillator.frequency.value = 554; //Db5
+                            currentFreq = 554;
+                        }
+                        else {
+                            oscillator.frequency.value = 1109; //Db6
+                            currentFreq = 1109;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 0) {
+                        oscillator.frequency.value = 587; //D5
+                        currentFreq = 587;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 622; //Eb5
+                        currentFreq = 622;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1175; //D6
+                        currentFreq = 1175;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1319; //E6
+                        currentFreq = 1319;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 5 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1245; //Eb6
+                        currentFreq = 1245;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1397; //F6
+                        currentFreq = 1397;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1480; //Gb6
+                        currentFreq = 1480;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 0 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1568; //G6
+                        currentFreq = 1568;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 0 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 5 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1661; //Ab6
+                        currentFreq = 1661;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1760; //A6
+                        currentFreq = 1760;
+                        gain.gain.value = maxFluteVol;
+                    } else {
+                        gain.gain.value = 0;
+                    }
+                    
+                }
+
+                if (testTime === true) {
+                    if (handLeft && handRight) {
+                        if (isArrEq(fingerPosition, correctFingering, 10)) {
+                            correctCounter++;
+                        }
+                        checkCounter++;
+                    }
+
+                    if ((correctCounter / checkCounter > 0.5) && checkCounter > 200) {
+                        resultsMessage.style.display = "inline";
+                        resultsMessage.innerText = ("Good job! You are playing " + notes[randNoteNum].name + "!");
+                        testTime = false;
+                    } else if (checkCounter >= 500 && isArrEq(fingerPosition, correctFingering, 10) === false) {
+                        resultsMessage.style.display = "inline";
+                        resultsMessage.innerText = ("Incorrect! The correct note is " + notes[randNoteNum].name + "! The correct fingering is shown in blue.");
+                        
+                        if (notes[randNoteNum].fingering[0] === 1) {
+                            document.getElementById("left-thumb").style.color = "blue";
+                        } else {
+                            document.getElementById("left-thumb").style.color = "white";
+                        }
+
+                        if (notes[randNoteNum].fingering[1] === 2) {
+                            document.getElementById("left-index").style.color = "blue";
+                        } else {
+                            document.getElementById("left-index").style.color = "white";
+                        }
+
+                        if (notes[randNoteNum].fingering[2] === 3) {
+                            document.getElementById("left-middle").style.color = "blue";
+                        } else {
+                            document.getElementById("left-middle").style.color = "white";
+                        }
+
+                        if (notes[randNoteNum].fingering[3] === 4) {
+                            document.getElementById("left-ring").style.color = "blue";
+                        } else {
+                            document.getElementById("left-ring").style.color = "white";
+                        }
+
+                        if (notes[randNoteNum].fingering[4] === 5) {
+                            document.getElementById("left-pinky").style.color = "blue";
+                        } else {
+                            document.getElementById("left-pinky").style.color = "white";
+                        }
+
+                        if (notes[randNoteNum].fingering[6] === 2) {
+                            document.getElementById("right-index").style.color = "blue";
+                        } else {
+                            document.getElementById("right-index").style.color = "white";
+                        }
+
+                        if (notes[randNoteNum].fingering[7] === 3) {
+                            document.getElementById("right-middle").style.color = "blue";
+                        } else {
+                            document.getElementById("right-middle").style.color = "white";
+                        }
+
+                        if (notes[randNoteNum].fingering[8] === 4) {
+                            document.getElementById("right-ring").style.color = "blue";
+                        } else {
+                            document.getElementById("right-ring").style.color = "white";
+                        }
+
+                        if (notes[randNoteNum].fingering[9] === 5) {
+                            document.getElementById("right-pinky").style.color = "blue";
+                        } else {
+                            document.getElementById("right-pinky").style.color = "white";
+                        }
+                    }
+                }
+
+
+                }
+
+                
+            });
+
+        </script>
+
+
+    </body>
+</html>

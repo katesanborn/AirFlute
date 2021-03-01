@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <title>Air Flute: A Virtual Flute and Tutoring System</title>
+
+    </head>
+    <body>
+        <h1><a href="titlePage.html">Air Flute: A Virtual Flute and Tutoring System</a></h1>
+
+        <button type="button" id = "start">Click Me To Start</button>
+        <button type="button" id = "allowMet">Allow metronome sound?</button>
+        <p></p>
+
+        <p id="metronomeSliderSpeed" class = "metronomeSliderSpeed">Speed of metronome</p>
+        <div class="slidecontainer">
+            <input type="range" min="25" max="176" value="100" class="slider" id="slider">
+        </div>
+
+        <p id="metronome" class = "metronome">1</p>
+        
+
+        <label for="exercises">Choose an exercise:</label>
+
+        <select name="exercises" id="exercises">
+        <option value="none">Choose an option</option>
+        <option value="exercise1">Exercise 1</option>
+        <option value="exercise2">Exercise 2</option>
+        <option value="exercise3">Exercise 3</option>
+        <option value="exercise4">Exercise 4</option>
+        <option value="exercise5">Exercise 5</option>
+        </select>
+
+        <button type="button" id = "listenExercise" class = "listenExercise">Listen to Exercise 1</button>
+        <button type="button" id = "exampleStartRecord" class = "exampleStartRecord">Record Exercise 1</button>
+        <button type="button" id = "exampleShowResults" class = "exampleShowResults">Show Exercise 1 Results</button>
+        <button type="button" id = "examplePlayResults" class = "examplePlayResults">Play Exercise 1 Results</button>
+        <button type="button" id = "reset" class = "reset">Reset Exercise 1</button>
+        <p></p>
+
+
+        <div class="container">
+            <img src="BlankFluteFingeringChart.jfif" id = "chartPic" class = "chartPic" alt="Chart">
+            <div id = "left-thumb" class="left-thumb">1</div>
+            <div id = "left-index" class="left-index">2</div>
+            <div id = "left-middle" class="left-middle">3</div>
+            <div id = "left-ring" class="left-ring">4</div>
+            <div id = "left-pinky" class="left-pinky">5</div>
+            <div id = "right-index" class="right-index">2</div>
+            <div id = "right-middle" class="right-middle">3</div>
+            <div id = "right-ring" class="right-ring">4</div>
+            <div id = "right-pinky" class="right-pinky">5</div>
+        </div>
+
+        <img src="Exercise_1.png" alt="Example 1" class = "Example1Picture" id = "Example1Picture">
+        <img src="Exercise_2.png" alt="Example 2" class = "Example2Picture" id = "Example2Picture">
+        <img src="Exercise_3.png" alt="Example 3" class = "Example3Picture" id = "Example3Picture">
+        <img src="Exercise_4.png" alt="Example 4" class = "Example4Picture" id = "Example4Picture">
+        <img src="Exercise_5.png" alt="Example 5" class = "Example5Picture" id = "Example5Picture">
+
+
+        <!-- <img src="arrowup.png" alt="Arrow1" class = "arrow" id = "Arrow1">
+        <img src="arrowup.png" alt="Arrow2" class = "arrow" id = "Arrow2">
+        <img src="arrowup.png" alt="Arrow3" class = "arrow" id = "Arrow3">
+        <img src="arrowup.png" alt="Arrow4" class = "arrow" id = "Arrow4">
+        <img src="arrowup.png" alt="Arrow5" class = "arrow" id = "Arrow5">
+        <img src="arrowup.png" alt="Arrow6" class = "arrow" id = "Arrow6">
+        <img src="arrowup.png" alt="Arrow7" class = "arrow" id = "Arrow7">
+        <img src="arrowup.png" alt="Arrow8" class = "arrow" id = "Arrow8">
+        <img src="arrowup.png" alt="Arrow9" class = "arrow" id = "Arrow9">
+        <img src="arrowup.png" alt="Arrow10" class = "arrow" id = "Arrow10"> -->
+
+        <p class = "PercentCorrectPrompt" id = "PercentCorrectPrompt">Percent Correct Exercise 1: </p>
+        <div id="PercentCorrect"></div>
+
+        <style>
+        body {
+            background-color: lightblue;
+          }
+        
+        
+        .container {
+            position: absolute;
+            text-align: center;
+            color: white;
+          }
+
+          .chartPic {
+            position: absolute;
+            left: 435px;
+          }
+          
+          .left-thumb {
+            position: absolute;
+            top: 85px;
+            left: 455px;
+            color: red;
+            font-size: 15px;
+          }
+          
+          .left-index {
+            position: absolute;
+            top: 50px;
+            left: 470px;
+            color: red;
+            font-size: 15px;
+          }
+          
+          .left-middle {
+            position: absolute;
+            top: 50px;
+            left: 515px;
+            color: red;
+            font-size: 15px;
+          }
+          
+          .left-ring {
+            position: absolute;
+            top: 50px;
+            left: 552px;
+            color: red;
+            font-size: 15px;
+          }
+          
+          .left-pinky {
+            position: absolute;
+            top: 12px;
+            left: 565px;
+            color: red;
+            font-size: 15px;
+          }
+
+          .right-index {
+            position: absolute;
+            top: 50px;
+            left: 625px;
+            color: red;
+            font-size: 15px;
+          }
+
+          .right-middle {
+            position: absolute;
+            top: 50px;
+            left: 670px;
+            color: red;
+            font-size: 15px;
+          }
+
+          .right-ring {
+            position: absolute;
+            top: 50px;
+            left: 715px;
+            color: red;
+            font-size: 15px;
+          }
+
+          .right-pinky {
+            position: absolute;
+            top: 75px;
+            left: 755px;
+            color: red;
+            font-size: 15px;
+          }
+
+        .exampleShowResults  {
+            opacity: 0;
+          }
+
+        .PercentCorrectPrompt {
+            opacity: 0;
+        }
+
+        .exampleStartRecord {
+            opacity: 0;
+        }
+
+        .examplePlayResults {
+            opacity: 0;
+        }
+
+        .Example1Picture {
+            display: none;
+            width: 250px;
+            height: 150px;
+            position: fixed;
+            top: 400px;
+        }
+
+        .Example2Picture {
+            display: none;
+            width: 1200px;
+            height: 150px;
+            position: fixed;
+            top: 400px;
+        }
+
+        .Example3Picture {
+            display: none;
+            width: 1200px;
+            height: 250 px;
+            position: fixed;
+            top: 400px;
+        }
+
+        .Example4Picture {
+            display: none;
+            width: 1000px;
+            height: 125px;
+            position: fixed;
+            top: 400px;
+        }
+
+        .Example5Picture {
+            display: none;
+            width: 1000px;
+            height: 125px;
+            position: fixed;
+            top: 400px;
+        }
+
+        .metronome {
+            opacity: 0;
+        }
+
+        .metronomeSliderSpeed {
+            opacity: 1;
+        }
+
+        .slider {
+            opacity: 1;
+        }
+
+        .reset {
+            opacity: 0;
+        }
+
+        .listenExercise {
+            opacity: 0;
+        }
+
+        </style>
+
+        <script src="leap-0.6.0-beta1.js"></script>
+        <script src="leap-1.0.0.js"></script>
+        
+        <script>
+
+            var minDotOn = -1;
+            var maxDotOn = 0.4;
+            var fingerPosition = [0,0,0,0,0,0,0,0,0,0];
+            var dotLeftThumb;
+            var dotLeftIndex;
+            var dotLeftMiddle;
+            var dotLeftRing;
+            var dotLeftPinky;
+            var dotRightIndex;
+            var dotRightMiddle;
+            var dotRightRing;
+            var dotRightPinky;
+            
+            var currentFreq;
+
+            var numFingersCorrect = [0, 0, 0, 0, 0, 0];
+            var numFingersTotal = [0, 0, 0, 0, 0, 0];
+
+            let exampleCorrect = [
+                [0],
+                [0],
+                [0],
+                [0],
+                [0],
+                [0]
+            ];
+
+            exampleCorrect[1][0] = [
+                [0,0,0,0,0,0,0,0,0,0]
+            ];
+
+            var exampleCaptureFinger = [
+                [0],
+                [0],
+                [0],
+                [0],
+                [0],
+                [0]
+            ];
+
+            exampleCaptureFinger[1][0] = [
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            ];
+
+            var exampleCaptureFreqVolumeMet = [
+                [0], //volume first, then frequency, then met volume
+                [0],
+                [0],
+                [0],
+                [0],
+                [0]
+            ];
+
+            exampleCaptureFreqVolumeMet[1][0] = [
+                [0, 0, 0]
+            ];
+
+            let listenCorrectArray = [
+                [0],
+                [0],
+                [0],
+                [0],
+                [0],
+                [0]
+            ];
+
+            let notePercCorr = [
+                0,
+                [0,1],
+                [0,1,2,3,4,5,6,7,8,9],
+                [0,1,2,3,4,5,6,7,8,9],
+                [0,1,2,3,4,5,6,7],
+                [0,1,2,3,4,5,6,7,8,9,10]
+            ];
+
+            let noteNumFingerCheckCorrect = [
+                0,
+                [0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0]
+            ];
+            let noteNumFingerCheckTotal = [
+                0,
+                [0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0]
+            ];
+            let noteNum = [0,0,0,0,0,0];
+            let prevFingering = [0,0,0,0,0,0,0,0,0,0];
+            let indivNotePercCorr = [
+                0,
+                [0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0]
+            ];
+
+            var recordExample = [0, false, false, false, false, false];
+            var percentCorrect = [0, 0, 0, 0, 0, 0];
+
+            let baseCorrect = [0]; // baseCorrect[exerciseNumber][numBeats, correctFingering, correctFrequency]
+            baseCorrect[1] = [
+                [4, [0, 2, 0, 0, 0, 0, 0, 0, 0, 5], 523]
+            ];
+            baseCorrect[2] = [
+                [2, [1, 2, 0, 0, 0, 0, 2, 0, 0, 5], 466],
+                [2, [0, 2, 0, 0, 0, 0, 0, 0, 0, 5], 523],
+                [1, [1, 2, 0, 0, 0, 0, 2, 0, 0, 5], 466],
+                [1, [0, 2, 0, 0, 0, 0, 0, 0, 0, 5], 523],
+                [1, [1, 0, 3, 4, 0, 0, 2, 3, 4, 0], 587],
+                [1, [0, 2, 0, 0, 0, 0, 0, 0, 0, 5], 523],
+                [2, [1, 2, 3, 0, 0, 0, 0, 0, 0, 5], 440],
+                [2, [1, 0, 3, 4, 0, 0, 2, 3, 4, 0], 587],
+                [4, [1, 2, 0, 0, 0, 0, 2, 0, 0, 5], 466]
+            ];
+            baseCorrect[3] = [
+                [3, [1, 0, 3, 4, 0, 0, 2, 3, 4, 5], 622],
+                [1, [1, 2, 0, 0, 0, 0, 2, 0, 0, 5], 466],
+                [1, [1, 0, 3, 4, 0, 0, 2, 3, 4, 0], 587],
+                [1, [1, 2, 3, 4, 0, 0, 2, 0, 0, 5], 698],
+                [1, [1, 2, 0, 0, 0, 0, 2, 0, 0, 5], 932],
+                [1, [1, 2, 3, 4, 0, 0, 2, 0, 0, 5], 698],
+                [2, [1, 0, 3, 4, 0, 0, 2, 3, 4, 0], 587],
+                [2, [1, 2, 0, 0, 0, 0, 2, 0, 0, 5], 466],
+                [4, [1, 0, 3, 4, 0, 0, 2, 3, 4, 5], 622]
+            ];
+            baseCorrect[4] = [
+                [3, [1, 2, 3, 4, 5, 0, 0, 0, 4, 5], 415],
+                [1, [1, 2, 0, 0, 0, 0, 2, 0, 0, 5], 466],
+                [1, [0, 2, 0, 0, 0, 0, 0, 0, 0, 5], 523],
+                [1, [1, 2, 0, 0, 0, 0, 2, 0, 0, 5], 466],
+                [2, [1, 2, 3, 4, 5, 0, 0, 0, 4, 5], 415],
+                [1, [1, 2, 3, 4, 0, 0, 2, 3, 4, 5], 622],
+                [3, [1, 2, 3, 4, 5, 0, 0, 0, 4, 5], 415]
+            ];
+            baseCorrect[5] = [
+                [0.5, [0, 2, 0, 0, 0, 0, 0, 0, 0, 5], 523],
+                [0.5, [1, 2, 3, 4, 0, 0, 2, 3, 0, 5], 659],
+                [0.5, [1, 2, 3, 4, 0, 0, 0, 0, 0, 5], 784],
+                [0.5, [1, 2, 3, 4, 0, 0, 2, 3, 0, 5], 659],
+                [1.0, [1, 2, 0, 0, 0, 0, 0, 0, 0, 5], 880],
+                [0.5, [1, 2, 3, 4, 0, 0, 0, 0, 0, 5], 784],
+                [0.5, [1, 2, 3, 4, 0, 0, 2, 3, 0, 5], 659],
+                [1.0, [0, 2, 0, 0, 0, 0, 0, 0, 0, 5], 523],
+                [1.0, [1, 0, 3, 4, 0, 0, 2, 3, 4, 0], 587],
+                [2.0, [0, 2, 0, 0, 0, 0, 0, 0, 0, 5], 523]
+            ];
+
+            const buildCorrect = (correctArr, framesPerBeat) => {
+                let numNotes = correctArr.length;
+                let returnArr = [0];
+                for (let noteCount = 0; noteCount < numNotes; noteCount++) {
+                    let totalFrames = framesPerBeat * correctArr[noteCount][0];
+                    for (let frameBuildCount = 0; frameBuildCount < totalFrames; frameBuildCount++) {
+                        returnArr.push(correctArr[noteCount][1]);
+                    }
+                }
+                return returnArr;
+            }
+
+            const buildCorrectListen = (correctArr, framesPerBeat, metAllow) => {
+                let numNotes = correctArr.length;
+                let returnArr = [0]; // frequency, noteVol, metVolume
+                let metVol;
+                let noteVol;
+
+                if (metAllow === true) {
+                    metVol = 0.25;
+                    noteVol = 0.75;
+                } else {
+                    metVol = 0;
+                    noteVol = 1;
+                }
+
+                for (let noteCount = 0; noteCount < numNotes; noteCount++) {
+                    let totalFrames = framesPerBeat * correctArr[noteCount][0];
+                    for (let frameBuildCount = 0; frameBuildCount < totalFrames; frameBuildCount++) {
+                        returnArr.push([correctArr[noteCount][2], noteVol, metVol]);
+                    }
+                }
+                return returnArr;
+            }
+
+
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+
+            const context = new AudioContext();
+            const oscillator = context.createOscillator();
+
+            const gain = context.createGain();
+            oscillator.connect(gain);
+            gain.connect(context.destination);
+
+            let maxFluteVol = 1;
+
+            start.onclick = function()
+            {
+                oscillator.start(0);
+                //oscillator.type = 'square';
+                gain.gain.value = 0;
+                oscillator.frequency.value = 220;
+                document.getElementById("start").innerText = "Started";
+                maxFluteVol = 1;
+            };
+
+
+            const contextMet = new AudioContext();
+            const oscillatorMet = contextMet.createOscillator();
+
+            const gainMet = contextMet.createGain();
+            oscillatorMet.connect(gainMet);
+            gainMet.connect(contextMet.destination);
+            var allowMetSound = false;
+            let maxMetVol = 0;
+
+
+            allowMet.onclick = function() {
+                oscillatorMet.start(0);
+                allowMetSound = true;
+                gainMet.gain.value = 0;
+                oscillatorMet.frequency.value = 435;
+                maxMetVol = 0.25;
+                maxFluteVol = 0.75;
+                document.getElementById("allowMet").innerText = "Metronome On";
+                /*document.getElementById("metronomeSliderSpeed").style.opacity = 1;
+                document.getElementById("slider").style.opacity = 1;*/
+            }
+
+            const slider = document.getElementById("slider");
+
+            let framesBetweenBeats = [0, 100, 100, 100, 100, 100];
+
+            let j = [0, -400, -400, -400, -300, -200];
+            let jStart = [0, -400, -400, -400, -300, -200];
+
+            var frameLimit = [0, 400, 1600, 1600, 1200, 800];
+            const beatsPerExample = [0, 4, 16, 16, 12, 8];
+
+            const twoThreeFour = [0, 4, 4, 4, 3, 2];
+            
+
+            /*var checkBox = document.getElementById("allowMetronome");
+            if (checkBox.checked === true) {
+                oscillatorMet.start(0);
+                allowMetSound = true;
+                gainMet.gain.value = 1;
+                oscillatorMet.frequency.value = 435;
+            } else {
+                allowMetSound = false;
+            }*/
+
+            /*function myFunction() {
+                // Get the checkbox
+                var checkBox = document.getElementById("myCheck");
+
+                // If the checkbox is checked, display the output text
+                if (checkBox.checked == true){
+                    oscillatorMet.start(0);
+                    allowMetSound = true;
+                    gainMet.gain.value = 1;
+                    oscillatorMet.frequency.value = 435;
+                } else {
+                    allowMetSound = false;
+                }
+            }*/
+
+
+            let finishedRecording = [0, false, false, false, false, false];
+
+            const listenCorr = document.getElementById("listenExercise");
+            const startRecord = document.getElementById("exampleStartRecord");
+            const showResults = document.getElementById("exampleShowResults");
+            const playResults = document.getElementById("examplePlayResults");
+            const percCorr = document.getElementById("PercentCorrectPrompt");
+            const resetEx = document.getElementById("reset");
+            
+            const ex1Pic = document.getElementById("Example1Picture");
+            const ex2Pic = document.getElementById("Example2Picture");
+            const ex3Pic = document.getElementById("Example3Picture");
+            const ex4Pic = document.getElementById("Example4Picture");
+            const ex5Pic = document.getElementById("Example5Picture");
+            let pics = [0, ex1Pic, ex2Pic, ex3Pic, ex4Pic, ex5Pic];
+
+            const arrow = document.getElementById("Arrow");
+            let arrows = [];
+            for (let arrowCount = 0; arrowCount < 31; arrowCount++) {
+                arrows[arrowCount] = arrow;
+            }
+            
+
+            exercises.onchange = function() {
+                if (exercises.selectedIndex != 0) {
+                    listenCorr.innerText = ("Listen to Exercise " + exercises.selectedIndex);
+                    startRecord.innerText = ("Record Exercise " + exercises.selectedIndex);
+                    showResults.innerText = ("Show Exercise " + exercises.selectedIndex + " Results");
+                    playResults.innerText = ("Play Exercise " + exercises.selectedIndex + " Results");
+                    percCorr.innerHTML = ("Percent Correct Exercise " + exercises.selectedIndex + ": ");
+                    resetEx.innerHTML = ("Reset Exercise " + exercises.selectedIndex);
+                    PercentCorrect.innerHTML = percentCorrect[exercises.selectedIndex];
+                    startRecord.style.opacity = 1;
+                    listenCorr.style.opacity = 1;
+
+                    framesBetweenBeats[exercises.selectedIndex] = 200 - slider.value;
+                    j[exercises.selectedIndex] = -twoThreeFour[exercises.selectedIndex] * framesBetweenBeats[exercises.selectedIndex];
+                    jStart[exercises.selectedIndex] = -twoThreeFour[exercises.selectedIndex] * framesBetweenBeats[exercises.selectedIndex];
+                    frameLimit[exercises.selectedIndex] = beatsPerExample[exercises.selectedIndex] * framesBetweenBeats[exercises.selectedIndex];
+
+                    exampleCorrect[exercises.selectedIndex] = buildCorrect(baseCorrect[exercises.selectedIndex], framesBetweenBeats[exercises.selectedIndex]);
+                } else {
+                    startRecord.style.opacity = 0;
+                    listenCorr.style.opacity = 0;
+                }
+
+                for (let picCount = 1; picCount < exercises.length; picCount++) {
+                        pics[picCount].style.display = "none";
+                }
+                pics[exercises.selectedIndex].style.display = "block";
+
+                if (finishedRecording[exercises.selectedIndex] === true) {
+                    showResults.style.opacity = 1;
+                    playResults.style.opacity = 1;
+                    resetEx.style.opacity = 1;
+                    document.getElementById("PercentCorrectPrompt").style.opacity = 1;
+                    document.getElementById("PercentCorrect").style.display = "inline";
+                } else {
+                    showResults.style.opacity = 0;
+                    playResults.style.opacity = 0;
+                    resetEx.style.opacity = 0;
+                    document.getElementById("PercentCorrectPrompt").style.opacity = 0;
+                    document.getElementById("PercentCorrect").style.display = "none";
+                }
+
+            }
+
+            slider.oninput = function() {
+
+                if (slider.value % 2 === 1) {
+                    slider.value++;
+                }
+
+                if (exercises.selectedIndex != 0) {
+                    framesBetweenBeats[exercises.selectedIndex] = 200 - slider.value;
+                    j[exercises.selectedIndex] = -twoThreeFour[exercises.selectedIndex] * framesBetweenBeats[exercises.selectedIndex];
+                    jStart[exercises.selectedIndex] = -twoThreeFour[exercises.selectedIndex] * framesBetweenBeats[exercises.selectedIndex];
+                    frameLimit[exercises.selectedIndex] = beatsPerExample[exercises.selectedIndex] * framesBetweenBeats[exercises.selectedIndex];
+                    exampleCorrect[exercises.selectedIndex] = buildCorrect(baseCorrect[exercises.selectedIndex], framesBetweenBeats[exercises.selectedIndex]);
+
+                } else {
+                    for (let kVal = 1; kVal < exercises.length; kVal++) {
+                        framesBetweenBeats[kVal] = 200 - slider.value;
+                        j[kVal] = -twoThreeFour[kVal] * framesBetweenBeats[kVal];
+                        jStart[kVal] = -twoThreeFour[kVal] * framesBetweenBeats[kVal];
+                        frameLimit[kVal] = beatsPerExample[kVal] * framesBetweenBeats[kVal];
+                    }
+                }  
+            }
+            
+            exampleStartRecord.onclick = function()
+            {
+                for (let counter = 0; counter < exercises.length; counter++) {
+                    recordExample[counter] = false;
+                }
+                recordExample[exercises.selectedIndex] = true;
+            }
+
+            exampleShowResults.onclick = function()
+            {
+                percentCorrect[exercises.selectedIndex] = numFingersCorrect[exercises.selectedIndex] / numFingersTotal[exercises.selectedIndex] * 100;
+                document.getElementById("PercentCorrectPrompt").style.opacity = 1;
+                document.getElementById("PercentCorrect").style.display = "inline";
+                PercentCorrect.innerHTML = percentCorrect[exercises.selectedIndex];
+                
+
+                let numWrongNotes = 0;
+                let windowMessage = "";
+                // loop through fingers to show num correct, total, and percent for each
+                for (let logCount = 1; logCount < noteNumFingerCheckCorrect[exercises.selectedIndex].length; logCount++) {
+                    indivNotePercCorr[exercises.selectedIndex][logCount] = 100 * noteNumFingerCheckCorrect[exercises.selectedIndex][logCount] / noteNumFingerCheckTotal[exercises.selectedIndex][logCount];
+                    if (indivNotePercCorr[exercises.selectedIndex][logCount] < 75) {
+                        numWrongNotes++;
+                        
+                        if (numWrongNotes == 1) {
+                            windowMessage += "Incorrect Notes:\n";
+                        }
+
+                        windowMessage += ("Note number " + logCount + "\n");
+                        windowMessage += ("The correct fingering is " + baseCorrect[exercises.selectedIndex][logCount-1][1] + ".\n");
+
+                    }
+                }
+
+                if (numWrongNotes === 0) {
+                    windowMessage += "All notes correct!";
+                }
+
+                window.alert(windowMessage);
+            }
+
+            let playCorrect = [0, false, false, false, false, false];
+            let listenCorrLoopCount = [0, 1, 1, 1, 1, 1];
+
+            var playExample = [0, false, false, false, false, false];
+            var i = [0, 1, 1, 1, 1, 1];
+
+            listenCorr.onclick = function()
+            {
+                listenCorrectArray[exercises.selectedIndex] = buildCorrectListen(baseCorrect[exercises.selectedIndex], framesBetweenBeats[exercises.selectedIndex], allowMetSound);
+                
+                for (let playCorrCount = 0; playCorrCount < exercises.length; playCorrCount++) {
+                    playCorrect[playCorrCount] = false;
+                }
+                playCorrect[exercises.selectedIndex] = true;
+            }
+
+            examplePlayResults.onclick = function()
+            {
+                for (let playCounter = 0; playCounter < exercises.length; playCounter++) {
+                    playExample[playCounter] = false;
+                }
+                playExample[exercises.selectedIndex] = true;
+            }
+
+            reset.onclick = function() {
+                if (finishedRecording[exercises.selectedIndex] === true) {
+                    numFingersCorrect[exercises.selectedIndex] = 0;
+                    numFingersTotal[exercises.selectedIndex] = 0;
+                    j[exercises.selectedIndex] = jStart[exercises.selectedIndex];
+                    i[exercises.selectedIndex] = 1;
+                    recordExample[exercises.selectedIndex] = false;
+                    playExample[exercises.selectedIndex] = false;
+                    finishedRecording[exercises.selectedIndex] = false;
+
+                    showResults.style.opacity = 0;
+                    playResults.style.opacity = 0;
+                    document.getElementById("PercentCorrectPrompt").style.opacity = 0;
+                    document.getElementById("reset").style.opacity = 0;
+                    document.getElementById("PercentCorrect").style.display = "none";
+
+
+                    exampleCaptureFinger[exercises.selectedIndex] = [
+                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    ];
+
+                    exampleCaptureFreqVolumeMet[exercises.selectedIndex] = [
+                        [0, 0, 0] //volume first, then frequency, then met volume
+                    ];
+
+                    noteNum[exercises.selectedIndex] = 0;
+                    prevFingering = [0,0,0,0,0,0,0,0,0,0];
+
+                    
+                    for (let resetNoteCorrCount = 0; resetNoteCorrCount < noteNumFingerCheckCorrect[exercises.selectedIndex].length; resetNoteCorrCount++) {
+                        indivNotePercCorr[exercises.selectedIndex][resetNoteCorrCount] = 0;
+                    }
+
+                    
+
+                }
+            }
+
+            const isArrEq = (firstArr, secondArr, numElem) => {
+                for (let count = 0; count < numElem; count++) {
+                    if (firstArr[count] != secondArr[count]) return false;
+                }
+                return true;
+            };
+
+            
+            Leap.loop({
+
+                frame: function(frame){
+
+                //var handLeft = frame.hands[0];
+                var handLeft;
+                if (frame.hands[0] && frame.hands[0].type === "left") {
+                    handLeft = frame.hands[0];
+                } else if (frame.hands[1] && frame.hands[1].type === "left") {
+                    handLeft = frame.hands[1];
+                } 
+
+                if (handLeft){
+                    var dotLeftIndex = Leap.vec3.dot(handLeft.direction, handLeft.indexFinger.direction);
+                    console.assert(!isNaN(dotLeftIndex));
+                    if (dotLeftIndex < maxDotOn && dotLeftIndex > minDotOn) {
+                        //LeftIndex.innerHTML = 2;
+                        fingerPosition[1] = 2;
+                        document.getElementById("left-index").style.color = "red";
+                    }
+                    else {
+                        //LeftIndex.innerHTML = 0;
+                        fingerPosition[1] = 0;
+                        document.getElementById("left-index").style.color = "white";
+                    }
+
+                    var dotLeftThumb = Leap.vec3.dot(handLeft.direction, handLeft.thumb.direction);
+                    console.assert(!isNaN(dotLeftThumb));
+                    if (dotLeftThumb > 0.75 /*&& dotLeftThumb > minDotOn*/) {
+                        //LeftThumb.innerHTML = 1;
+                        fingerPosition[0] = 1;
+                        document.getElementById("left-thumb").style.color = "red";
+                    }
+                    else {
+                        //LeftThumb.innerHTML = 0;
+                        fingerPosition[0] = 0;
+                        document.getElementById("left-thumb").style.color = "white";
+                    }
+
+                    var dotLeftMiddle = Leap.vec3.dot(handLeft.direction, handLeft.middleFinger.direction);
+                    console.assert(!isNaN(dotLeftMiddle));
+                    if (dotLeftMiddle < maxDotOn && dotLeftMiddle > minDotOn) {
+                        //LeftMiddle.innerHTML = 3;
+                        fingerPosition[2] = 3;
+                        document.getElementById("left-middle").style.color = "red";
+                    }
+                    else {
+                        //LeftMiddle.innerHTML = 0;
+                        fingerPosition[2] = 0;
+                        document.getElementById("left-middle").style.color = "white";
+                    }
+
+                    var dotLeftRing = Leap.vec3.dot(handLeft.direction, handLeft.ringFinger.direction);
+                    console.assert(!isNaN(dotLeftRing));
+                    if (dotLeftRing < maxDotOn && dotLeftRing > minDotOn) {
+                        //LeftRing.innerHTML = 4;
+                        fingerPosition[3] = 4;
+                        document.getElementById("left-ring").style.color = "red";
+                    }
+                    else {
+                        //LeftRing.innerHTML = 0;
+                        fingerPosition[3] = 0;
+                        document.getElementById("left-ring").style.color = "white";
+                    }
+
+                    var dotLeftPinky = Leap.vec3.dot(handLeft.direction, handLeft.pinky.direction);
+                    console.assert(!isNaN(dotLeftPinky));
+                    if (dotLeftPinky < maxDotOn && dotLeftPinky > minDotOn) {
+                        //LeftPinky.innerHTML = 5;
+                        fingerPosition[4] = 5;
+                        document.getElementById("left-pinky").style.color = "red";
+                    }
+                    else {
+                        //LeftPinky.innerHTML = 0;
+                        fingerPosition[4] = 0;
+                        document.getElementById("left-pinky").style.color = "white";
+                    }
+                }
+
+
+                //var handRight = frame.hands[1];
+                var handRight;
+                if (frame.hands[0] && frame.hands[0].type === "right") {
+                    handRight = frame.hands[0];
+                } else if (frame.hands[1] && frame.hands[1].type === "right") {
+                    handRight = frame.hands[1];
+                } 
+                
+                if (handRight){
+                    var dotRightIndex = Leap.vec3.dot(handRight.direction, handRight.indexFinger.direction);
+                    console.assert(!isNaN(dotRightIndex));
+                    if (dotRightIndex < maxDotOn && dotRightIndex > minDotOn) {
+                        //RightIndex.innerHTML = 2;
+                        fingerPosition[6] = 2;
+                        document.getElementById("right-index").style.color = "red";
+                    }
+                    else {
+                        //RightIndex.innerHTML = 0;
+                        fingerPosition[6] = 0;
+                        document.getElementById("right-index").style.color = "white";
+                    }
+
+                    var dotRightMiddle = Leap.vec3.dot(handRight.direction, handRight.middleFinger.direction);
+                    console.assert(!isNaN(dotRightMiddle));
+                    if (dotRightMiddle < maxDotOn && dotRightMiddle > minDotOn) {
+                        //RightMiddle.innerHTML = 3;
+                        fingerPosition[7] = 3;
+                        document.getElementById("right-middle").style.color = "red";
+                    }
+                    else {
+                        //RightMiddle.innerHTML = 0;
+                        fingerPosition[7] = 0;
+                        document.getElementById("right-middle").style.color = "white";
+                    }
+
+                    var dotRightRing = Leap.vec3.dot(handRight.direction, handRight.ringFinger.direction);
+                    console.assert(!isNaN(dotRightRing));
+                    if (dotRightRing < maxDotOn && dotRightRing > minDotOn) {
+                        //RightRing.innerHTML = 4;
+                        fingerPosition[8] = 4;
+                        document.getElementById("right-ring").style.color = "red";
+                    }
+                    else {
+                        //RightRing.innerHTML = 0;
+                        fingerPosition[8] = 0;
+                        document.getElementById("right-ring").style.color = "white";
+                    }
+
+                    var dotRightPinky = Leap.vec3.dot(handRight.direction, handRight.pinky.direction);
+                    console.assert(!isNaN(dotRightPinky));
+                    if (dotRightPinky < maxDotOn && dotRightPinky > minDotOn) {
+                        //RightPinky.innerHTML = 5;
+                        fingerPosition[9] = 5;
+                        document.getElementById("right-pinky").style.color = "red";
+                    }
+                    else {
+                        //RightPinky.innerHTML = 0;
+                        fingerPosition[9] = 0;
+                        document.getElementById("right-pinky").style.color = "white";
+                    }
+
+                    //if (fingerPosition == [1, 2, 3, 4, 5, 0, 2, 3, 4, 5]) {
+                    if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 0) {                       
+                        oscillator.frequency.value = 294; //D4
+                        currentFreq = 294;
+                        gain.gain.value = maxFluteVol;
+                        
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 311; //Eb4
+                        currentFreq = 311;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 330) < Math.abs(currentFreq - 659)) {
+                            oscillator.frequency.value = 330; //E4
+                            currentFreq = 330;
+                        }
+                        else {
+                            oscillator.frequency.value = 659; //E5
+                            currentFreq = 659;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 349) < Math.abs(currentFreq - 698)) {
+                            oscillator.frequency.value = 349; //F4
+                            currentFreq = 349;
+                        }
+                        else {
+                            oscillator.frequency.value = 698; //F5
+                            currentFreq = 698;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 370) < Math.abs(currentFreq - 740)) {
+                            oscillator.frequency.value = 370; //Gb4
+                            currentFreq = 370;
+                        }
+                        else {
+                            oscillator.frequency.value = 740; //Gb5
+                            currentFreq = 740;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 392) < Math.abs(currentFreq - 784)) {
+                            oscillator.frequency.value = 392; //G4
+                            currentFreq = 392;
+                        }
+                        else {
+                            oscillator.frequency.value = 784; //G5
+                            currentFreq = 784;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 5 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 415) < Math.abs(currentFreq - 831)) {
+                            oscillator.frequency.value = 415; //Ab4
+                            currentFreq = 415;
+                        }
+                        else {
+                            oscillator.frequency.value = 831; //Ab5
+                            currentFreq = 831;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 440) < Math.abs(currentFreq - 880)) {
+                            oscillator.frequency.value = 440; //A4
+                            currentFreq = 440;
+                        }
+                        else {
+                            oscillator.frequency.value = 880; //A5
+                            currentFreq = 880;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 466) < Math.abs(currentFreq - 932)) {
+                            oscillator.frequency.value = 466; //Bb4
+                            currentFreq = 466;
+                        }
+                        else {
+                            oscillator.frequency.value = 932; //Bb5
+                            currentFreq = 932;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 494) < Math.abs(currentFreq - 988)) {
+                            oscillator.frequency.value = 494; //B4
+                            currentFreq = 494;
+                        }
+                        else {
+                            oscillator.frequency.value = 988; //B5
+                            currentFreq = 988;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 0 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 523) < Math.abs(currentFreq - 1047)) {
+                            oscillator.frequency.value = 523; //C5
+                            currentFreq = 523;
+                        }
+                        else {
+                            oscillator.frequency.value = 1047; //C6
+                            currentFreq = 1047;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 0 && fingerPosition[1] == 0 && fingerPosition[2] == 0 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        if (Math.abs(currentFreq - 554) < Math.abs(currentFreq - 1109)) {
+                            oscillator.frequency.value = 554; //Db5
+                            currentFreq = 554;
+                        }
+                        else {
+                            oscillator.frequency.value = 1109; //Db6
+                            currentFreq = 1109;
+                        }
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 0) {
+                        oscillator.frequency.value = 587; //D5
+                        currentFreq = 587;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 622; //Eb5
+                        currentFreq = 622;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1175; //D6
+                        currentFreq = 1175;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1319; //E6
+                        currentFreq = 1319;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 5 && fingerPosition[6] == 2 && fingerPosition[7] == 3 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1245; //Eb6
+                        currentFreq = 1245;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1397; //F6
+                        currentFreq = 1397;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 2 && fingerPosition[2] == 0 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 4 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1480; //Gb6
+                        currentFreq = 1480;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 0 && fingerPosition[1] == 2 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 0 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1568; //G6
+                        currentFreq = 1568;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 0 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 4 && fingerPosition[4] == 5 && fingerPosition[6] == 0 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1661; //Ab6
+                        currentFreq = 1661;
+                        gain.gain.value = maxFluteVol;
+                    } else if (fingerPosition[0] == 1 && fingerPosition[1] == 0 && fingerPosition[2] == 3 && fingerPosition[3] == 0 && fingerPosition[4] == 0 && fingerPosition[6] == 2 && fingerPosition[7] == 0 && fingerPosition[8] == 0 && fingerPosition[9] == 5) {
+                        oscillator.frequency.value = 1760; //A6
+                        currentFreq = 1760;
+                        gain.gain.value = maxFluteVol;
+                    } else {
+                        gain.gain.value = 0;
+                    }
+
+                    if (recordExample[exercises.selectedIndex] == true) {
+                        if (j[exercises.selectedIndex] <= frameLimit[exercises.selectedIndex]) {
+                            document.getElementById("metronome").style.opacity = 1;
+                        } else document.getElementById("metronome").style.opacity = 0;
+                        
+                        if (twoThreeFour[exercises.selectedIndex] === 4) {
+                            if (j[exercises.selectedIndex] >= 0) {
+                                if ((j[exercises.selectedIndex] % (4 * framesBetweenBeats[exercises.selectedIndex]) === 0)) {
+                                    metronome.innerHTML = 1;
+                                } else if (j[exercises.selectedIndex] % (4 * framesBetweenBeats[exercises.selectedIndex]) === (1 * framesBetweenBeats[exercises.selectedIndex])) {
+                                    metronome.innerHTML = 2;
+                                } else if (j[exercises.selectedIndex] % (4 * framesBetweenBeats[exercises.selectedIndex]) === (2 * framesBetweenBeats[exercises.selectedIndex])) {
+                                    metronome.innerHTML = 3;
+                                } else if (j[exercises.selectedIndex] % (4 * framesBetweenBeats[exercises.selectedIndex]) === (3 * framesBetweenBeats[exercises.selectedIndex])) {
+                                    metronome.innerHTML = 4;
+                                }
+                            } else {
+                                if (j[exercises.selectedIndex] === -4 * framesBetweenBeats[exercises.selectedIndex]) {
+                                    metronome.innerHTML = 1;
+                                } else if (j[exercises.selectedIndex] === -3 * framesBetweenBeats[exercises.selectedIndex]) {
+                                    metronome.innerHTML = 2;
+                                } else if (j[exercises.selectedIndex] === -2 * framesBetweenBeats[exercises.selectedIndex]) {
+                                    metronome.innerHTML = 3;
+                                } else if (j[exercises.selectedIndex] === -1 * framesBetweenBeats[exercises.selectedIndex]) {
+                                    metronome.innerHTML = 4;
+                                }
+                            }
+
+                            //if ([(j[1] % 100 <= 5)/*&& allowMetSound === true && j[1] < frameLimit[1]*/] /*|| (allowMetSound === true && j[1] < 0 && math.abs(j[1]%100)>=95) && j[1] < frameLimit[1])*/) {
+                            if (j[exercises.selectedIndex] > 0 && j[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] <= 5 && j[exercises.selectedIndex] <frameLimit[exercises.selectedIndex] && allowMetSound === true) {
+                                gainMet.gain.value = maxMetVol;
+                            } else if (j[exercises.selectedIndex] < 0 && (j[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] <= ((framesBetweenBeats[exercises.selectedIndex] * -1) + 5) || j[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] === 0) && allowMetSound === true) {
+                                gainMet.gain.value = maxMetVol;
+                            } else {
+                                gainMet.gain.value = 0;
+                            }
+                        }
+                        if (twoThreeFour[exercises.selectedIndex] === 3) {
+                            if (j[exercises.selectedIndex] < 0) {
+                                if (j[exercises.selectedIndex] === -3 * framesBetweenBeats[exercises.selectedIndex]) {
+                                    metronome.innerHTML = 1;
+                                } else if (j[exercises.selectedIndex] === -2 * framesBetweenBeats[exercises.selectedIndex]) {
+                                    metronome.innerHTML = 2;
+                                } else if (j[exercises.selectedIndex] === -1 * framesBetweenBeats[exercises.selectedIndex]) {
+                                    metronome.innerHTML = 3;
+                                }
+                            } else {
+                                if (j[exercises.selectedIndex] % (3 * framesBetweenBeats[exercises.selectedIndex]) === 0) {
+                                    metronome.innerHTML = 1;
+                                } else if (j[exercises.selectedIndex] % (3 * framesBetweenBeats[exercises.selectedIndex]) === (1 * framesBetweenBeats[exercises.selectedIndex])) {
+                                    metronome.innerHTML = 2;
+                                } else if (j[exercises.selectedIndex] % (3 * framesBetweenBeats[exercises.selectedIndex]) === (2 * framesBetweenBeats[exercises.selectedIndex])) {
+                                    metronome.innerHTML = 3;
+                                }
+                            }
+
+                            if (j[exercises.selectedIndex] > 0 && j[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] <= 5 && j[exercises.selectedIndex] <frameLimit[exercises.selectedIndex] && allowMetSound === true) {
+                                gainMet.gain.value = maxMetVol;
+                            } else if (j[exercises.selectedIndex] < 0 && (j[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] <= ((framesBetweenBeats[exercises.selectedIndex] * -1) + 5) || j[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] === 0) && allowMetSound === true) {
+                                gainMet.gain.value = maxMetVol;
+                            } else {
+                                gainMet.gain.value = 0;
+                            }
+                        }
+                        if (twoThreeFour[exercises.selectedIndex] === 2) {
+                            if (j[exercises.selectedIndex] < 0) {
+                                if (j[exercises.selectedIndex] === -2 * framesBetweenBeats[exercises.selectedIndex]) {
+                                    metronome.innerHTML = 1;
+                                } else if (j[exercises.selectedIndex] === -1 * framesBetweenBeats[exercises.selectedIndex]) {
+                                    metronome.innerHTML = 2;
+                                }
+                            } else {
+                                if (j[exercises.selectedIndex] % (2 * framesBetweenBeats[exercises.selectedIndex]) === 0) {
+                                    metronome.innerHTML = 1;
+                                } else if (j[exercises.selectedIndex] % (2 * framesBetweenBeats[exercises.selectedIndex]) === (1 * framesBetweenBeats[exercises.selectedIndex])) {
+                                    metronome.innerHTML = 2;
+                                }
+                            }
+
+                            if (j[exercises.selectedIndex] > 0 && j[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] <= 5 && j[exercises.selectedIndex] <frameLimit[exercises.selectedIndex] && allowMetSound === true) {
+                                gainMet.gain.value = maxMetVol;
+                            } else if (j[exercises.selectedIndex] < 0 && (j[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] <= ((framesBetweenBeats[exercises.selectedIndex] * -1) + 5) || j[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] === 0) && allowMetSound === true) {
+                                gainMet.gain.value = maxMetVol;
+                            } else {
+                                gainMet.gain.value = 0;
+                            }
+                        }
+
+                        if (j[exercises.selectedIndex] >= frameLimit[exercises.selectedIndex] - 1) {
+                            showResults.style.opacity = 1;
+                            playResults.style.opacity = 1;
+                        }
+
+
+                        if (j[exercises.selectedIndex] > 0 && j[exercises.selectedIndex] < frameLimit[exercises.selectedIndex]) {
+                            if (isArrEq(prevFingering, exampleCorrect[exercises.selectedIndex][j[exercises.selectedIndex]], 10) === false) {
+                                prevFingering = exampleCorrect[exercises.selectedIndex][j[exercises.selectedIndex]];
+                                noteNum[exercises.selectedIndex]++;
+                            }
+                        }
+
+                        if (j[exercises.selectedIndex] < frameLimit[exercises.selectedIndex] && j[exercises.selectedIndex] > 0) {
+                            exampleCaptureFinger[exercises.selectedIndex].push([fingerPosition[0],fingerPosition[1],fingerPosition[2],fingerPosition[3],fingerPosition[4], fingerPosition[5], fingerPosition[6], fingerPosition[7], fingerPosition[8], fingerPosition[9]]);
+                            exampleCaptureFreqVolumeMet[exercises.selectedIndex].push([gain.gain.value, oscillator.frequency.value, gainMet.gain.value]);
+                            //numFingersCorrect[1] = 0;
+                            numFingersTotal[exercises.selectedIndex] = numFingersTotal[exercises.selectedIndex] + 9;
+                            noteNumFingerCheckTotal[exercises.selectedIndex][noteNum[exercises.selectedIndex]] = noteNumFingerCheckTotal[exercises.selectedIndex][noteNum[exercises.selectedIndex]] + 9;
+                            for (let positionCount = 0; positionCount <=9; positionCount++) {
+                                if (positionCount != 5 && fingerPosition[positionCount] == exampleCorrect[exercises.selectedIndex][j[exercises.selectedIndex]][positionCount]) {
+                                    numFingersCorrect[exercises.selectedIndex] = numFingersCorrect[exercises.selectedIndex] + 1;
+                                    /*
+                                    let noteNumFingerCheckCorrect;
+                                    let noteNumFingerCheckTotal;
+                                    */
+                                    noteNumFingerCheckCorrect[exercises.selectedIndex][noteNum[exercises.selectedIndex]]++;
+                                }
+                            }
+                        }
+                        j[exercises.selectedIndex] = j[exercises.selectedIndex] + 1;
+
+                        if (j[exercises.selectedIndex] === frameLimit[exercises.selectedIndex]) {
+                            finishedRecording[exercises.selectedIndex] = true;
+                            document.getElementById("reset").style.opacity = 1;
+                        }
+                    }
+                    
+                    //if (j[1] >= frameLimit[1] - 1 && recordExample[1] == true) showResults.style.opacity = 1;
+                }
+
+                    if (playExample[exercises.selectedIndex] == true) {
+                        if (i[exercises.selectedIndex] < frameLimit[exercises.selectedIndex]) {
+                            gain.gain.value = exampleCaptureFreqVolumeMet[exercises.selectedIndex][i[exercises.selectedIndex]][0];
+                            oscillator.frequency.value = exampleCaptureFreqVolumeMet[exercises.selectedIndex][i[exercises.selectedIndex]][1];
+                            if (allowMetSound === true) {
+                                gainMet.gain.value = exampleCaptureFreqVolumeMet[exercises.selectedIndex][i[exercises.selectedIndex]][2];
+                            }
+                        }
+                        if (i[exercises.selectedIndex] == frameLimit[exercises.selectedIndex]) gain.gain.value =  0;
+                        i[exercises.selectedIndex] = i[exercises.selectedIndex] + 1;
+                    }
+
+                    if (playCorrect[exercises.selectedIndex] === true) {
+                        if (listenCorrLoopCount[exercises.selectedIndex] < frameLimit[exercises.selectedIndex]) {
+                            oscillator.frequency.value = listenCorrectArray[exercises.selectedIndex][listenCorrLoopCount[exercises.selectedIndex]][0];
+                            gain.gain.value = listenCorrectArray[exercises.selectedIndex][listenCorrLoopCount[exercises.selectedIndex]][1];
+                            
+                            if (listenCorrLoopCount[exercises.selectedIndex] % framesBetweenBeats[exercises.selectedIndex] <= 5 && listenCorrLoopCount[exercises.selectedIndex] < frameLimit[exercises.selectedIndex] && allowMetSound === true) {
+                                gainMet.gain.value = listenCorrectArray[exercises.selectedIndex][listenCorrLoopCount[exercises.selectedIndex]][2];
+                            } else {
+                                gainMet.gain.value = 0;
+                            }
+                        
+                        }
+                        listenCorrLoopCount[exercises.selectedIndex] = listenCorrLoopCount[exercises.selectedIndex] + 1;
+                        if (listenCorrLoopCount[exercises.selectedIndex] === frameLimit[exercises.selectedIndex]) {
+                            gain.gain.value = 0;
+                            playCorrect[exercises.selectedIndex] = false;
+                            listenCorrLoopCount[exercises.selectedIndex] = 1;
+                            gainMet.gain.value = 0;
+                        }
+                    }
+
+                }
+
+                
+            });
+
+        </script>
+
+
+    </body>
+</html>
